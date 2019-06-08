@@ -109,14 +109,16 @@ function loadImages() {
   // this sh**t difficult things ever driving me crazyy 2hr. !!!
   // I would better name  called Var BigStupidcrazyNumber2 !!
 
-  // Ahren credit solution .include , splice ('')
-  // For{ var i= 0}
-  //   while
-  //   while 
  
-  while (randIndex1 === lastDisplayed[0] || randIndex1 === lastDisplayed[1] || randIndex1 === lastDisplayed[2] || randIndex2 === lastDisplayed[0] || randIndex2 === lastDisplayed[1] || randIndex2 === lastDisplayed[2] || randIndex3 === lastDisplayed[0] || randIndex3 === lastDisplayed[1] || randIndex3 === lastDisplayed[2] || randIndex1 === randIndex2 || randIndex1 === randIndex3 || randIndex2 === randIndex3) {
+  // lena .includes apply
+  
+  while(lastDisplayed.includes(randIndex1) || lastDisplayed.includes(randIndex2) || lastDisplayed.includes(randIndex3) || randIndex1 === randIndex2 || randIndex2 === randIndex3 || randIndex3 === randIndex1){
     randGenerator();
   }
+
+  // while (randIndex1 === lastDisplayed[0] || randIndex1 === lastDisplayed[1] || randIndex1 === lastDisplayed[2] || randIndex2 === lastDisplayed[0] || randIndex2 === lastDisplayed[1] || randIndex2 === lastDisplayed[2] || randIndex3 === lastDisplayed[0] || randIndex3 === lastDisplayed[1] || randIndex3 === lastDisplayed[2] || randIndex1 === randIndex2 || randIndex1 === randIndex3 || randIndex2 === randIndex3) {
+  //   randGenerator();
+  // }
 
 
   console.log('/////////////////////////////////////////');
@@ -181,13 +183,11 @@ function drawChart() {
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: data,
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
+    ooptions: {
+      animation: {
+        onProgress: function(animation) {
+          progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
+        }
       }
     }
   });
