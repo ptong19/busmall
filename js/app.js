@@ -86,7 +86,7 @@ function loadImages() {
   lastDisplayed.push(randIndex3);
 
 
-  // //Re-assigning the variables for each picture
+  //Re-assigning the variables for each picture
   randGenerator();
  
 
@@ -98,13 +98,29 @@ function loadImages() {
   // For{ var i= 0}
   //   while
   //   while
+// 
 
 
+  randGenerator();
+  
 
+  
   // switch
+  // while (randIndex1 === lastDisplayed[0] || randIndex2 === lastDisplayed[1] || randIndex3 === lastDisplayed[2]) {
+  //   randGenerator();
+  // }
+
+
+  // while (randIndex2 === lastDisplayed[0]) {
+  //   randIndex2 = randGenerator();
+  // }
+  // while (randIndex3 === randIndex1 || randIndex3 === randIndex2) {
+  //   randIndex3 = randGenerator();
+  // }
 
   while (randIndex1 === lastDisplayed[0] || randIndex1 === lastDisplayed[1] || randIndex1 === lastDisplayed[2] || randIndex2 === lastDisplayed[0] || randIndex2 === lastDisplayed[1] || randIndex2 === lastDisplayed[2] || randIndex3 === lastDisplayed[0] || randIndex3 === lastDisplayed[1] || randIndex3 === lastDisplayed[2] || randIndex1 === randIndex2 || randIndex1 === randIndex3 || randIndex2 === randIndex3) {
-  randGenerator();}
+    randGenerator();
+  }
 
 
   console.log('/////////////////////////////////////////');
@@ -197,7 +213,7 @@ function renderBestProduct(){
   picSection.removeEventListener('click', handleUserClick);
 }
 
-randGenerator();
+// randGenerator();
 loadImages();
 
 
