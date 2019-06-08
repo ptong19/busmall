@@ -53,3 +53,10 @@ h1 {
     font-family: 'Muli', sans-serif;
     font-size: 50px;
 }
+
+
+canvas {
+    margin-left: 0px;
+    margin-top: 700px;
+}
+
