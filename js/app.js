@@ -11,8 +11,7 @@ var imageNameArray = [];
 var ClickFinal = [];
 var ViewFinal = [];
 
-//View Results Button
-// var viewResultsButton = document.createElement('button');
+
 
 
 
@@ -23,9 +22,10 @@ var leftProduct = document.getElementById('left');
 var centerProduct = document.getElementById('center');
 var rightProduct = document.getElementById('right');
 // results
-// var resultsEl = document.getElementById('results');
+var resultsEl = document.getElementById('results');
 // var resultList = document.getElementById('results2s');
-
+//View Results Button
+var viewResultsButton = document.createElement('button');
 var canvas = document.getElementById('userdata');
 
 // Constructor
@@ -71,7 +71,6 @@ new Product ('Wine Glass', 'img/wine-glass.jpg');
 
 
 
-
 // ++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
 // ++++++++++++++++++++++++++++++++++++++++++++
@@ -80,9 +79,9 @@ var randIndex2;
 var randIndex3;
 
 function randGenerator() {
-  randIndex1 = Math.floor(Math.random() * (Product.cataLogArr.length-1) );
-  randIndex2 = Math.floor(Math.random() * (Product.cataLogArr.length-1) );
-  randIndex3 = Math.floor(Math.random() * (Product.cataLogArr.length-1));
+  randIndex1 = Math.floor(Math.random() * (Product.cataLogArr.length));
+  randIndex2 = Math.floor(Math.random() * (Product.cataLogArr.length));
+  randIndex3 = Math.floor(Math.random() * (Product.cataLogArr.length));
 }
 
 
@@ -90,6 +89,7 @@ function randGenerator() {
 //Function to Load Images to Page
 function loadImages() {
   if (totalVotes > 24) {
+    renderBestProduct();
     surveyEnd();
   }
 
@@ -103,15 +103,12 @@ function loadImages() {
 
   //Re-assigning the variables for each picture
   randGenerator();
- 
+
+
 
   //While loop to prevent double choices AND no prior choice repeats
-  // this sh**t difficult things ever driving me crazyy 2hr. !!!
-  // I would better name  called Var BigStupidcrazyNumber2 !!
+  // lena .includes apply (refactor)
 
- 
-  // lena .includes apply
-  
   while(lastDisplayed.includes(randIndex1) || lastDisplayed.includes(randIndex2) || lastDisplayed.includes(randIndex3) || randIndex1 === randIndex2 || randIndex2 === randIndex3 || randIndex3 === randIndex1){
     randGenerator();
   }
@@ -165,14 +162,19 @@ function handleUserClick(event) {
   loadImages();
 }
 
+
+
+
+
 //Function to end survey at 25 clicks
 function surveyEnd() {
-  // viewResultsButton.textContent = 'View Results';
-  // picSection.appendChild(viewResultsButton);
+  viewResultsButton.textContent = 'View Results';
+  picSection.appendChild(viewResultsButton);
   picSection.removeEventListener('click', handleUserClick);
-  for (var i = 0; i < Product.cataLogArr.length; i++) {
-    ClickFinal.push(Product.cataLogArr[i].votes);
-    ViewFinal.push(Product.cataLogArr[i].views);
+
+  for (var fiNal = 0; fiNal < Product.cataLogArr.length; fiNal++) {
+    ClickFinal.push(Product.cataLogArr[fiNal].votes);
+    ViewFinal.push(Product.cataLogArr[fiNal].views);
   }
 }
 
@@ -303,26 +305,26 @@ var data = {
 };
 
 
-// function renderBestProduct(){
-//   // create an element
-//   // add content
-//   // append to the parent
+function renderBestProduct(){
+  // create an element
+  // add content
+  // append to the parent
 
-//   var bestProduct;
-//   var temp = 0;
+  var bestProduct;
+  var temp = 0;
 
-//   for(var i = 0; i < Product.cataLogArr.length; i++){
-//     if(Product.cataLogArr[i].votes > temp){
-//       temp = Product.cataLogArr[i].votes;
-//       bestProduct = Product.cataLogArr[i];
-//     }
-//   }
+  for(var i = 0; i < Product.cataLogArr.length; i++){
+    if(Product.cataLogArr[i].votes > temp){
+      temp = Product.cataLogArr[i].votes;
+      bestProduct = Product.cataLogArr[i];
+    }
+  }
 
 
-//   //   var h2El = document.createElement('h2');
-//   //   h2El.textContent = `The Best Product is ${bestProduct.imageName} with ${bestProduct.votes} votes.`;
-//   //   resultsEl.appendChild(h2El);
-
+  var h2El = document.createElement('h2');
+  h2El.textContent = `The Best Product is ${bestProduct.imageName} with ${bestProduct.votes} votes. Thank You for participating!`;
+  resultsEl.appendChild(h2El);
+}
 
 //   //   var liEl = document.createElement('li');
 //   //   liEl.textContent = `Images 1 ${Product.cataLogArr[0].imageName} : ${Product.cataLogArr[0].votes} votes.`;
@@ -357,45 +359,30 @@ drawChart();
 // EVENT LISTENERS
 //Listener for click-on-pic
 picSection.addEventListener('click', handleUserClick);
-canvas.addEventListener('click', drawChart);
+viewResultsButton.addEventListener('click', drawChart);
+
+
+document.getElementById('fader').style.opacity = 1;
+document.getElementById('fader1').style.opacity = 5;
+document.getElementById('fader2').style.opacity = 7;
+
+
+setTimeout(function() {
+  document.getElementById("loader-wrapper").style.display = 'none';
+}, 14000);
+
+
+setTimeout(function() {
+  document.getElementById("text1st").style.display = 'none';
+}, 6000);
 
 
 
-// var ctx = document.getElementById('myChart').getContext('2d');
-// var myChart = new Chart(ctx, {
-//   type: 'bar',
-//   data: {
-//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//     datasets: [{
-//       label: '# of Votes',
-//       data: [12, 19, 3, 5, 2, 3],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
+setTimeout(function() {
+  document.getElementById("fader1").style.display = 'none';
+}, 10000);
 
+
+setTimeout(function() {
+  document.getElementById("fader2").style.display = 'none';
+}, 13000);

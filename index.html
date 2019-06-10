@@ -13,38 +13,54 @@
   
   <main>
         <section id="picSection">
-        <div class="hero">
-    <img src="img/imac_display.png">
-    
-        </div>
-    <section id="picSection">
-        <div><img id="left"src="" alt="" title="" class="left"/></div>
-        <div><img id="center"src=""alt="" title="" class="center"/></div>
-        <div><img id="right"src="" alt"" title="" class="right"/></div>
-        <div id="results" class="result"></div>
-    </section>
-
-<!-- 
-        <ol><h2>Instructions</h2>
-            <li>The Bus Mall appreciates your feedback! Please take a moment to provide us some feedback on our products!</li>
-            <li>A set of three random product images will appear below. Please click on one of the three. We will ask you to do this 25 times.</li>
-            <li>After 25 product clicks, you will be presented with a 'View Results' button to see the survey's results if you'd like! </li>
-            <h2>Thank You for participating!</h2>
-          </ol>
-           -->
-
-
-        <div id="results2" class="results2">
             
-        <ul id="results2s" ></ul>
-
+    <div class="hero">
+    <img src="img/imac_display.png">
+    <div class="top-left">Top Left
+    <div class="typewriter">
+                    
+    <p class="text1st" id="text1st">Bus Mall appreciates your feedback! Please take a moment to provide us some feedback</p>
+    <p class="fader1" id="fader1">Set of three random product images will appear below. Please click on one of the three. </p>
+    <p class="fader2" id="fader2">After 25 product clicks, you will be presented with a 'View Results' button to see results</p>
+    
+                  
     </div>
+    </div>
+    </div>
+    
+    <section id="picSection">
+        
+        <div id="fader">
+            
+
+        <div><img id="left" src="" alt="" title="" class="left"/></div>
+        <div><img id="center"src=""alt="" title="" class="center"/></div>
+        <div><img id="right" src="" alt"" title="" class="right"/></div>
+        <div id="results" class="result"></div>
+    </div>
+    </section>
+   
+        <div class="loader-wrapper" id="loader-wrapper">
+                <div id="loading">
+                  <div class="loader"></div>
+              
+        <div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>
+    </div>
+</div>
+        <!-- <div id="results2" class="results2">
+            
+        <ul id="results2s" ></ul> -->
+
+    <!-- </div> -->
     <section class="resultg">
       
     <canvas id="userdata"></canvas>
 </section>
+<script src="http://code.jquery.com/jquery-git2.js"></script>
+<meta charset="utf-8">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <script src="js/app.js"></script>
+
   </main>
   
   <footer>

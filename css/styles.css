@@ -1,6 +1,8 @@
 h1 {
     text-align: center;
+    color:black;
 }
+
 
 
 .hero{
@@ -19,7 +21,7 @@ h1 {
     left: 368px;
     z-index: 2;
     width: 250px;
-    height: 250px;
+    height: 300px;
 }
 
 .center{
@@ -28,7 +30,7 @@ h1 {
     left: 627px;
     z-index: 2;
     width: 250px;
-    height: 250px;
+    height: 300px;
 }
 
 .right{
@@ -37,16 +39,18 @@ h1 {
     left: 890px;
     z-index: 2;
     width: 250px;
-    height: 250px;
+    height: 300px;
 }
 
 
 .result{
     position:absolute;
     top: 538px;
-    left: 497px;
+    left: 367px;
     z-index: 1;
     color: white;
+    text-align: center;
+    
 }
 h1 {
 
@@ -60,3 +64,84 @@ canvas {
     margin-top: 700px;
 }
 
+
+#fader {
+    opacity:0;
+    transition: opacity 15s;
+ }
+
+ .fader1 {
+    opacity:0;
+    transition: opacity 20s;
+ }
+
+ 
+ .fader2 {
+    opacity:0;
+    transition: opacity 25s;
+ }
+
+ #loading-bar-spinner.spinner {
+    left: 50%;
+    margin-left: -20px;
+    top: 50%;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 19 !important;
+    animation: loading-bar-spinner 400ms linear infinite;
+}
+
+#loading-bar-spinner.spinner .spinner-icon {
+    width: 40px;
+    height: 40px;
+    border:  solid 4px transparent;
+    border-top-color:  #00C8B1 !important;
+    border-left-color: #00C8B1 !important;
+    border-radius: 50%;
+}
+
+@keyframes loading-bar-spinner {
+  0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+body{
+    background-color:whitesmoke;
+}
+
+
+/*  */
+
+  
+  /* DEMO-SPECIFIC STYLES */
+  .typewriter p {
+    color: #fff;
+    font-size: 12px;
+    font-family: monospace;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(30, end),
+      blink-caret .5s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+  }
+
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
