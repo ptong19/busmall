@@ -3,17 +3,13 @@
 // Go Easy write simple code , Do not overthinking to solve it.
 
 //global variables
-Product.cataLogArr =[];
+var cataLogArr =[];
 var lastDisplayed =[];
 var totalVotes = 0;
 // hold data for chart data
 var imageNameArray = [];
 var ClickFinal = [];
 var ViewFinal = [];
-
-
-
-
 
 
 //// render 3 images to the DOM
@@ -23,25 +19,24 @@ var centerProduct = document.getElementById('center');
 var rightProduct = document.getElementById('right');
 // results
 var resultsEl = document.getElementById('results');
-// var resultList = document.getElementById('results2s');
+var results1l = document.getElementById('results1');
 //View Results Button
 var viewResultsButton = document.createElement('button');
 var canvas = document.getElementById('userdata');
 
 // Constructor
-
 function Product (imgName,filepath) {
   this.imageName = imgName;
   this.filePath = filepath;
   this.votes = 0;
   this.views = 0;
   //Push the object to Array
-  Product.cataLogArr.push(this);
+  cataLogArr.push(this);
   imageNameArray.push(this.imageName);
 }
 
-for (var i = 0; i < Product.cataLogArr.length; i++) {
-  imageNameArray.push(Product.cataLogArr[i].name);
+for (var i = 0; i < cataLogArr.length; i++) {
+  imageNameArray.push(cataLogArr[i].name);
 }
 
 
@@ -79,9 +74,9 @@ var randIndex2;
 var randIndex3;
 
 function randGenerator() {
-  randIndex1 = Math.floor(Math.random() * (Product.cataLogArr.length));
-  randIndex2 = Math.floor(Math.random() * (Product.cataLogArr.length));
-  randIndex3 = Math.floor(Math.random() * (Product.cataLogArr.length));
+  randIndex1 = Math.floor(Math.random() * (cataLogArr.length));
+  randIndex2 = Math.floor(Math.random() * (cataLogArr.length));
+  randIndex3 = Math.floor(Math.random() * (cataLogArr.length));
 }
 
 
@@ -89,10 +84,8 @@ function randGenerator() {
 //Function to Load Images to Page
 function loadImages() {
   if (totalVotes > 24) {
-    renderBestProduct();
     surveyEnd();
   }
-
   lastDisplayed = [];
 
 
@@ -119,21 +112,23 @@ function loadImages() {
 
 
   console.log('/////////////////////////////////////////');
-  console.log('Product.cataLogArr:', Product.cataLogArr);
+  console.log('Product.cataLogArr:', cataLogArr);
   console.log('randIndex2', randIndex2);
   console.log('randIndex1', randIndex1);
   console.log('randIndex3', randIndex3);
 
 
   //Makes leftImg's src property equal to the fileName of the indexed item
-  leftProduct.src = Product.cataLogArr[randIndex2].filePath;
-  centerProduct.src = Product.cataLogArr[randIndex1].filePath;
-  rightProduct.src = Product.cataLogArr[randIndex3].filePath;
+  leftProduct.src = cataLogArr[randIndex2].filePath;
+  centerProduct.src = cataLogArr[randIndex1].filePath;
+  rightProduct.src = cataLogArr[randIndex3].filePath;
+
+  
 
   //Adds 1 to the display tally property of the indexed object
-  Product.cataLogArr[randIndex1].views++;
-  Product.cataLogArr[randIndex2].views++;
-  Product.cataLogArr[randIndex3].views++;
+  cataLogArr[randIndex1].views++;
+  cataLogArr[randIndex2].views++;
+  cataLogArr[randIndex3].views++;
 
 }
 
@@ -141,15 +136,15 @@ function loadImages() {
 function handleUserClick(event) {
 
   if (event.target.id === 'left') {
-    Product.cataLogArr[randIndex1].votes++;
+    cataLogArr[randIndex1].votes++;
   }
 
   else if (event.target.id === 'center') {
-    Product.cataLogArr[randIndex2].votes++;
+    cataLogArr[randIndex2].votes++;
   }
 
   else if (event.target.id === 'right') {
-    Product.cataLogArr[randIndex3].votes++;
+    cataLogArr[randIndex3].votes++;
   }
   else {
     alert('Pick a product!');
@@ -171,10 +166,13 @@ function surveyEnd() {
   viewResultsButton.textContent = 'View Results';
   picSection.appendChild(viewResultsButton);
   picSection.removeEventListener('click', handleUserClick);
+  document.getElementById("getridofranpic").innerHTML = "";
+  renderBestProduct();
+  
 
-  for (var fiNal = 0; fiNal < Product.cataLogArr.length; fiNal++) {
-    ClickFinal.push(Product.cataLogArr[fiNal].votes);
-    ViewFinal.push(Product.cataLogArr[fiNal].views);
+  for (var fiNal = 0; fiNal < cataLogArr.length; fiNal++) {
+    ClickFinal.push(cataLogArr[fiNal].votes);
+    ViewFinal.push(cataLogArr[fiNal].views);
   }
 }
 
@@ -304,27 +302,36 @@ var data = {
   ]
 };
 
+var bestProduct;
 
 function renderBestProduct(){
   // create an element
   // add content
   // append to the parent
 
-  var bestProduct;
+  bestProduct;
   var temp = 0;
 
-  for(var i = 0; i < Product.cataLogArr.length; i++){
-    if(Product.cataLogArr[i].votes > temp){
-      temp = Product.cataLogArr[i].votes;
-      bestProduct = Product.cataLogArr[i];
+  for(var i = 0; i < cataLogArr.length; i++){
+    if(cataLogArr[i].votes > temp){
+      temp = cataLogArr[i].votes;
+      bestProduct = cataLogArr[i];
     }
   }
-
 
   var h2El = document.createElement('h2');
   h2El.textContent = `The Best Product is ${bestProduct.imageName} with ${bestProduct.votes} votes. Thank You for participating!`;
   resultsEl.appendChild(h2El);
+  results1l.src = bestProduct.filePath;
+  console.log('best pro ' + bestProduct.votes + 'votes ' + bestProduct.filePath);
 }
+
+
+
+
+
+
+
 
 //   //   var liEl = document.createElement('li');
 //   //   liEl.textContent = `Images 1 ${Product.cataLogArr[0].imageName} : ${Product.cataLogArr[0].votes} votes.`;
@@ -361,6 +368,9 @@ drawChart();
 picSection.addEventListener('click', handleUserClick);
 viewResultsButton.addEventListener('click', drawChart);
 
+
+
+// fadein fadeout 
 
 document.getElementById('fader').style.opacity = 1;
 document.getElementById('fader1').style.opacity = 5;

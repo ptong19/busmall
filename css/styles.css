@@ -24,6 +24,15 @@ h1 {
     height: 300px;
 }
 
+.results1{
+    position:absolute;
+    top: 150px;
+    left: 627px;
+    z-index: 1;
+    width: 300px;
+    height: 300px;
+}
+
 .center{
     position:absolute;
     top: 250px;
@@ -46,7 +55,7 @@ h1 {
 .result{
     position:absolute;
     top: 538px;
-    left: 367px;
+    left: 359px;
     z-index: 1;
     color: white;
     text-align: center;
@@ -143,5 +152,5 @@ body{
   .top-left {
     position: absolute;
     top: 8px;
-    left: 16px;
+    left: 25px;
   }
