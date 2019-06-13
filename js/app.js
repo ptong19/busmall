@@ -73,6 +73,40 @@ var randIndex1;
 var randIndex2;
 var randIndex3;
 
+// function checkData(){
+//   if(localStorage.userResults) {
+//     cataLogArr = JSON.parse(localStorage.userResults);
+//     for (var ls = 0; ls< cataLogArr.length; ls++) {
+//       imageNameArray.push(cataLogArr[ls].imageName);
+//     }
+//   }
+
+//   else{
+//     cataLogArr =[];
+//   }
+
+// };
+
+
+
+
+// Retrieving data from local storage and updating arrays, complicated way
+if (localStorage.getItem('storedProducts') !== null) {
+  console.log('Data found');
+  var driveMeCrazy = JSON.parse(localStorage.getItem('storedProducts'));
+  for (var craZy = 0; craZy < cataLogArr.length; craZy++) {
+    if (cataLogArr[craZy].name === driveMeCrazy[craZy].name) {
+      console.log('Match found');
+      cataLogArr[craZy].votes = driveMeCrazy[craZy].votes;
+    }
+  }
+} else {
+  console.log('Not found');
+  localStorage.setItem('storedProducts', JSON.stringify(cataLogArr));
+}
+
+
+
 function randGenerator() {
   randIndex1 = Math.floor(Math.random() * (cataLogArr.length));
   randIndex2 = Math.floor(Math.random() * (cataLogArr.length));
@@ -85,6 +119,7 @@ function randGenerator() {
 function loadImages() {
   if (totalVotes > 24) {
     surveyEnd();
+    localStorage.setItem('storedProducts', JSON.stringify(cataLogArr));
   }
   lastDisplayed = [];
 
