@@ -26,7 +26,7 @@ h1 {
 
 .results1{
     position:absolute;
-    top: 150px;
+    top: 200px;
     left: 627px;
     z-index: 1;
     width: 300px;
@@ -52,10 +52,10 @@ h1 {
 }
 
 
-.result{
+.results{
     position:absolute;
     top: 538px;
-    left: 359px;
+    left: 357px;
     z-index: 1;
     color: white;
     text-align: center;
@@ -153,4 +153,8 @@ body{
     position: absolute;
     top: 8px;
     left: 25px;
+  }
+  
+  #vote{
+      font-size: 19px;
   }

@@ -5,7 +5,7 @@
 //global variables
 var cataLogArr =[];
 var lastDisplayed =[];
-var totalVotes = 0;
+var totalVotes = 24;
 // hold data for chart data
 var imageNameArray = [];
 var ClickFinal = [];
@@ -17,6 +17,7 @@ var picSection = document.getElementById('picSection');
 var leftProduct = document.getElementById('left');
 var centerProduct = document.getElementById('center');
 var rightProduct = document.getElementById('right');
+var voteremain = document.getElementById('vote');
 // results
 var resultsEl = document.getElementById('results');
 var results1l = document.getElementById('results1');
@@ -68,26 +69,22 @@ new Product ('Wine Glass', 'img/wine-glass.jpg');
 
 // ++++++++++++++++++++++++++++++++++++++++++++
 // FUNCTION DECLARATIONS
-// ++++++++++++++++++++++++++++++++++++++++++++
+
 var randIndex1;
 var randIndex2;
 var randIndex3;
 
-// function checkData(){
-//   if(localStorage.userResults) {
-//     cataLogArr = JSON.parse(localStorage.userResults);
-//     for (var ls = 0; ls< cataLogArr.length; ls++) {
-//       imageNameArray.push(cataLogArr[ls].imageName);
-//     }
-//   }
-
-//   else{
-//     cataLogArr =[];
-//   }
-
-// };
 
 
+//Retrieving data from local storage, if it exists
+
+// if (localStorage.getItem('storedProducts') !== null) {
+//   console.log('Data found');
+//   cataLogArr = JSON.parse(localStorage.getItem('storedProducts'));
+// } else {
+//   console.log('Not found');
+//   localStorage.setItem('storedProducts', JSON.stringify(cataLogArr));
+// }
 
 
 // Retrieving data from local storage and updating arrays, complicated way
@@ -98,6 +95,7 @@ if (localStorage.getItem('storedProducts') !== null) {
     if (cataLogArr[craZy].name === driveMeCrazy[craZy].name) {
       console.log('Match found');
       cataLogArr[craZy].votes = driveMeCrazy[craZy].votes;
+      cataLogArr[craZy].views = driveMeCrazy[craZy].views;
     }
   }
 } else {
@@ -117,10 +115,11 @@ function randGenerator() {
 
 //Function to Load Images to Page
 function loadImages() {
-  if (totalVotes > 24) {
+  if (totalVotes < 0) {
     surveyEnd();
     localStorage.setItem('storedProducts', JSON.stringify(cataLogArr));
   }
+
   lastDisplayed = [];
 
 
@@ -169,6 +168,7 @@ function loadImages() {
 
 //Event Handler for click on picture
 function handleUserClick(event) {
+  voteremain.textContent = `votes remaining : ${totalVotes}`;
 
   if (event.target.id === 'left') {
     cataLogArr[randIndex1].votes++;
@@ -183,11 +183,11 @@ function handleUserClick(event) {
   }
   else {
     alert('Pick a product!');
-    totalVotes--;
   }
   console.log('I clicked' + event.target.id);
 
-  totalVotes++;
+  
+  totalVotes--;
 
   loadImages();
 }
